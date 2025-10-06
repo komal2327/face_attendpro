@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .primary { background-color: #1D4ED8; color: #fff; }
+        .primary:hover { background-color: #2563eb; }
+        .secondary { background-color: #14B8A6; color: #fff; }
+        .secondary:hover { background-color: #2dd4bf; }
+        .success { background-color: #22C55E; color: #fff; }
+        .success:hover { background-color: #16a34a; }
+        .accent { color: #FBBF24; }
+        .card { background-color: #fff; box-shadow: 0 4px 24px 0 #e5e7eb; }
+        .bordered { border: 1px solid #E5E7EB; }
+        .bg-main { background-color: #F9FAFB; }
+        .text-primary { color: #111827; }
+        .text-secondary { color: #6B7280; }
+    </style>
+</head>
+<body class="min-h-screen bg-main flex items-center justify-center">
+    <div class="max-w-md w-full p-6">
+        <div class="rounded-xl card p-8 flex flex-col items-center transition hover:shadow-2xl bordered">
+            <div class="mb-4">
+                <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="32" fill="#1D4ED8" opacity="0.10"/>
+                    <ellipse cx="32" cy="28" rx="14" ry="14" fill="#14B8A6"/>
+                    <ellipse cx="32" cy="50" rx="18" ry="8" fill="#FBBF24"/>
+                    <circle cx="32" cy="28" r="8" fill="#22C55E"/>
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-primary mb-2 tracking-tight">Sign in to <span class="accent">FaceAttend Pro</span></h2>
+            <form method="POST" action="/login" class="w-full mt-4">
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-secondary mb-1">Select Role</label>
+                    <div class="flex gap-2">
+                        <input type="hidden" id="role" name="role" value="student">
+                        <button type="button" onclick="selectRole('student')" id="role-student" class="flex-1 py-2 rounded-lg bordered text-primary bg-main font-semibold hover:bg-blue-50 transition">👨‍🎓 Student</button>
+                        <button type="button" onclick="selectRole('teacher')" id="role-teacher" class="flex-1 py-2 rounded-lg bordered text-primary bg-main font-semibold hover:bg-blue-50 transition">👩‍🏫 Teacher</button>
+                        <button type="button" onclick="selectRole('admin')" id="role-admin" class="flex-1 py-2 rounded-lg bordered text-primary bg-main font-semibold hover:bg-blue-50 transition">🛡️ Admin</button>
+                    </div>
+                </div>
+                <script>
+                    function selectRole(role) {
+                        document.getElementById('role').value = role;
+                        document.getElementById('role-student').classList.remove('border-blue-500','bg-blue-100');
+                        document.getElementById('role-teacher').classList.remove('border-blue-500','bg-blue-100');
+                        document.getElementById('role-admin').classList.remove('border-blue-500','bg-blue-100');
+                        if(role==='student') {
+                            document.getElementById('role-student').classList.add('border-blue-500','bg-blue-100');
+                        } else if(role==='teacher') {
+                            document.getElementById('role-teacher').classList.add('border-blue-500','bg-blue-100');
+                        } else if(role==='admin') {
+                            document.getElementById('role-admin').classList.add('border-blue-500','bg-blue-100');
+                        }
+                    }
+                    window.onload = function() { selectRole('student'); };
+                </script>
+                <div class="mb-4">
+                    <label for="enrollment" class="block text-sm font-semibold text-primary mb-1">Email or Enrollment Number</label>
+                    <input type="text" class="block w-full rounded-lg bordered px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary transition bg-main text-primary" id="enrollment" name="enrollment" required placeholder="Enter your email or enrollment">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-semibold text-primary mb-1">Password</label>
+                    <input type="password" class="block w-full rounded-lg bordered px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary transition bg-main text-primary" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <div class="mb-4 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <input class="bordered" type="checkbox" id="remember">
+                        <label class="text-secondary text-sm" for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="text-sm text-primary hover:text-accent transition">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full py-2 rounded-lg primary font-semibold shadow hover:shadow-lg transition">Sign In</button>
+                <div class="text-center mt-3">
+                    <a href="/signup" class="text-secondary hover:text-primary transition">Don't have an account? Sign Up</a>
+                </div>
+            </form>
+            <div class="mt-6 bg-main rounded-lg p-3 w-full">
+                <h6 class="text-sm text-secondary mb-2">Demo Credentials:</h6>
+                <div class="text-xs text-secondary">
+                    <p><strong>Student:</strong> student@demo.com / password123</p>
+                    <p><strong>Teacher:</strong> teacher@demo.com / password123</p>
+                    <p><strong>Admin:</strong> admin@demo.com / password123</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
