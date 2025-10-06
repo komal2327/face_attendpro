@@ -1,0 +1,7 @@
+Student ID: unknown
+Subject: None
+Date: None
+Teacher: None
+Latitude: 22.621744636801328
+Longitude: 88.35865058983758
+Status: Present
